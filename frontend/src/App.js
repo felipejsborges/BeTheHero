@@ -1,25 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg'; - // linha removida por termos excluído o logo.svg
+// import './App.css'; - //linha removida por termos excluído o App.cs
+import './global.css'
+import Routes from './routes'; //n preciso por o index pq automaticamente ele procura pelo arquivo index
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello Jovens
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  //aqui tinha várias coisa por padrão mas foram excluídas por ser desnecessárias ao nosso projeto
+  <Routes />
   );
 }
 
