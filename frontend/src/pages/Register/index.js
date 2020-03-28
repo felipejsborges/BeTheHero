@@ -46,18 +46,18 @@ export default function Register() {
         </section>
         <form onSubmit={handleRegister}>
           <input 
-            placeholder="Nome da ONG" 
+            placeholder="Qual o nome da ONG?" 
             value={name} //to dando falando que o valor é = ao estado name
             onChange={e => setName(e.target.value)} //quando mudar, recebo o evento da mudança, pego seu valor e atualizo o state name
           />
           <input 
             type="email" 
-            placeholder="E-mail"
+            placeholder="Insira o e-mail da ONG"
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
           <input 
-            placeholder="WhatsApp"
+            placeholder="WhatsApp com DDD. Ex.: 11900112233"
             value={whatsapp}
             onChange={e => setWhatsapp(e.target.value)}
           />
