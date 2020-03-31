@@ -1,9 +1,9 @@
-const connection = require('../database/connection'); // importando as cfgs de conexão com a DB
+const connection = require('../database/connection'); // importing databases connection configurations
 
-module.exports = { //será exportada nas rotas de criação de casos
-  async index(request, response) { //essa rota é pra listar os casos criados
-    const { page = 1} = request.query; //vai buscar o número da página, se não encontrar, usar page = 1
-    const [count] = await connection('incidents').count(); //o método count conta a qnt de incidentes. ele pode retornar um array, e como quer o só o valor, usamos os []
+module.exports = { //exporting to be imported in routes.js
+  async index(request, response) { //list incidents function
+    const { page = 1 } = request.query; //searching for page number in query params, if dont find, page  = 1.
+    const [count] = await connection('incidents').count(); //count method return an array. if i want just the value, i use de []
     const incidents = await connection('incidents')
       .join('ongs', 'ongs.id', '=', 'incidents.ong_id') //estou juntando as informações do caso com: as informações da tabela 'ongs' que possui o 'ongs.id' '=' ao 'incidents.ong_id'. Ou seja, to adicionando os dados da ong criadora no incidente criado
       .limit(5) //litando a exibição de 5 casos de uma vez
@@ -22,26 +22,27 @@ module.exports = { //será exportada nas rotas de criação de casos
   async create(request, response) {
     const { title, description, value } = request.body; //pegando esses dados do corpo do request
     const ong_id = request.headers.authorization;//tenho que usar o request.headers para pegar os dados da ONG, pq no headers ficam informações que não existem no body como infos de atenticação, localização, idioma.. e authorization é o nome da header criada no insomnia
-    const [id] = await connection('incidents').insert({//fazendo a conexão com o banco de dados e inserindo na tabela 'incidents' os dados abaixo
+    const [id] = await connection('incidents').insert({ //fazendo a conexão com o banco de dados e inserindo na tabela 'incidents' os dados abaixo
       title,
       description,
       value,
       ong_id,
     })
-    //como a resposta do await será um array de uma única posição, o ID gerado será o número dele na array. ouseja, o primeiro caso será 1, o segundo 2...
-    return response.json({ id }); //como resposta retornarei apenas o ID do caso - mesma coisa q a const do await chamar result e eu retornar resulto[0], no caso do primeir caso inserido
+    //a resposta do await (que esta sendo armazenado na const declarada) é uma array de lenght = 1 que tem como valor a contagem de incidents inseridos desde o primeiro, sem descontar os excluídos. Portanto, cada criação de caso terá valor único. Podemos usar esse valor como ID para o caso. Ao colocar o [] entre 'id', estou pegando somente esse valor, e não toda a array.
+    return response.json({ id }); //e ao colocar {id}, estou "nomeando" esse valor de 'id'. um console logo em id sem {id} seria 'value', com {id} fica '{id: value}'
   },
   async delete(request, response) {
-    const { id } = request.params;
-    const ong_id = request.headers.authorization; //preciso pra conferir se a ong q ta querendo deletar o caso realmente é a ONG que o criou
+    //em routes.js, eu falo que a rota pra deletar um incident é '.../incidents/id'. Portanto, qq pessoa pode chamar essa rota e deletar. Portanto, preciso certificar q é a ong dona querendo excluir:
+    const { id } = request.params; //pegando o route param (id do .../incidents/id) e o chamando de 'id'
+    const ong_id = request.headers.authorization; //pegando o id da ong que ta tentando exlcuir
     const incident = await connection('incidents')
-      .where('id', id) //to procurando nos incidentes um que tenha o 'id' igual ao id buscado acima: const { id }
+      .where('id', id) //to procurando nos incidentes um que tenha o 'id' igual ao do route param
       .select('ong_id') //encontrando esse id, vou selecionar a id da ong: 'ong_ind'
-      .first(); //pra me retornar apenas 1 resultado
-    if (incident.ong_id !== ong_id) { //se o ong_id encontrado for diferente do ong_id do caso que está sendo excluído, significa q uma ong ta tentando excluir o caso de outra
+      .first(); //pra me retornar apenas o 1o resultado, caso for retornar uma array
+    if (incident.ong_id !== ong_id) { //verificando se o id da ong q ta tenando excluir é diferente ao da que criou o caso. Se for diferente:
       return response.status(401).json({ error: 'Operation not permitted.'}); //401 é um código de erro chamado 'unauthorized'
-    }
-    await connection('incidents').where('id', id).delete();
+    } //agr se for igual:
+    await connection('incidents').where('id', id).delete(); //deletando o caso
     return response.status(204).send(); //o 204 significa NoContent - p nao ter conteúdo nenhum msm
   }
 };

@@ -1,4 +1,4 @@
-const generateUniqueId = require('../utils/generateUniqueId');
+const generateUniqueId = require('../utils/generateUniqueId'); //importando a função criada em outro arquivo
 const connection = require('../database/connection'); // importando as cfgs de conexão com a DB
 
 module.exports = { //será exportada nas rotas de listagem e criação de ongs
@@ -8,7 +8,7 @@ module.exports = { //será exportada nas rotas de listagem e criação de ongs
   },
   async create(request, response) {
     const { name, email, whatsapp, city, uf } = request.body; //pegando esses dados do corpo do request 
-    const id = generateUniqueId();   
+    const id = generateUniqueId(); //pra ong preciso criar um id mais complexo q o para o caso
     await connection('ongs').insert({//fazendo a conexão com o banco de dados e inserindo na tabela 'ongs' os dados abaixo
       id,
       name,

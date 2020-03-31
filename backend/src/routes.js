@@ -4,11 +4,16 @@ const OngController = require('./controllers/OngController');
 const IncidentController = require('./controllers/IncidentController');
 const ProfileController = require('./controllers/ProfileController');
 const SessionController = require('./controllers/SessionController');
+
 const routes = express.Router(); //to importando, na variável const, a função de rotas do express
 
-routes.post('/sessions', SessionController.create); //rota de controle das sessoes de login. é metodo post pois cada login é uma criação de solicitação p acessar o sistema
+routes.post('/sessions', celebrate({
+	[Segments.BODY]: Joi.object().keys({
+		id: Joi.string().required().length(8) //n precisaria dessa validação pq no proprio SessionController ele ja testa se o id inserido existe certinho, mas fiz pra treinar
+	})
+}), SessionController.create); //rota de controle das sessoes de login. é metodo post pois cada login é uma criação de solicitação p acessar o sistema
 
-routes.get('/ongs', OngController.index); //rota de listagem das ongs cadastradas
+routes.get('/ongs', OngController.index); //rota de listagem das ongs cadastradas - n tem validação pq n precisa de body, header ou query params
 routes.post('/ongs', celebrate({//rota de cadastramento de uma ong. O celebrate vem antes pq a validação é antes de criar o dado
 	[Segments.BODY]: Joi.object().keys({ //pra iniciar a validação de um body, preciso ter esse formato. Além de body podemos ter route, query e params. No caso da criação da ONG, precisamos validar apenas o body
 		name: Joi.string().required().max(50), //nome precisa ser string e é obrigatório
@@ -43,4 +48,4 @@ routes.delete('/incidents/:id', celebrate({ //rota para deletar um caso
 	})
 }), IncidentController.delete); 
 
-module.exports = routes; //exportando as rotas para serem acessadas no nosso arquivo index.js
+module.exports = routes; //exportando as rotas para serem acessadas no nosso arquivo app.js

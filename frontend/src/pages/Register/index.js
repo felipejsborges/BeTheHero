@@ -14,8 +14,7 @@ export default function Register() {
 
   const history = useHistory(); //criando a const history pra ser usada dentro da função
 
-  async function handleRegister(e) { //função que será chamada ao "submitar" o formulário de registro da ong
-    //o 'e' é o evento q recebemos ao executar a função
+  async function handleRegister(e) { //função que será chamada ao "submitar" o formulário de registro da ong. o 'e' é o evento q recebemos ao executar a função
     e.preventDefault(); //isso previne o comportamento padrão da página. um ex: se n fizer isso ela recarrega inteira quando chamar a ação
     const data = { //criei o state com os valores, busquei eles do meu form através do onChange={e=>set...} e adicionei nessa constante para serem enviados para minha DB
       name,
@@ -23,7 +22,7 @@ export default function Register() {
       whatsapp,
       city,
       uf,
-};
+    };
     try { //vou tentar realizar a req e response e, se der certo:
       const response = await api.post('ongs', data); //to enviando para a rota '/ongs' a array 'data'
       alert(`Seu ID de acesso: ${response.data.id}`); //to retornando um alerta de sucesso. response é um json contendo os dados da resposta do sistema, data um objeto desse json e id, que fica dentro do data, é o ID criado para a ong que acabou de se cadastrar

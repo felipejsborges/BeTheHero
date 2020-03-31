@@ -1,4 +1,4 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom'; //necessário para que, ao abrir uma nova página, ele n precise recarregar td a página inteira novamente, apenas abre a página desejada
 import { FiLogIn } from 'react-icons/fi' //o /fi é pq quero o feather icons e o FiLogIn é o ícone específico que eu quero
 import api from '../../services/api';

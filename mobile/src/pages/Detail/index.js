@@ -1,6 +1,6 @@
 import React from 'react';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation, useRoute } from '@react-navigation/native'; //useRoute serve p pegar infrmaçãoes da pagina atual
+import { useNavigation, useRoute } from '@react-navigation/native'; //useRoute serve p pegar infrmaçãoes da pagina que executei uma ação e enviar para a que abri com essa ação
 import { View, Text, Image, TouchableOpacity, Linking } from 'react-native'; //o linking serve pra usar links de apps, como se fosse urls, dentro do mobile
 import * as MailComposer from 'expo-mail-composer'; //importando td da extensão com o nome de MailComposer
 import logoImg from '../../assets/logo.png';
@@ -8,8 +8,7 @@ import styles from './styles';
 
 export default function Detail() {
 	const navigation = useNavigation();
-	//ao clicar em um caso específico na página q listam os casos, é ativada a função navigateToDetail que enviará para a página 'Detail' o incident, que são os dados do caso aberto. p
-	//Portanto, tenho que usar o useRoute para pegar os detalhes do caso específico aberto pelo usuário
+	//ao clicar em um caso específico na página q listam os casos, é ativada a função navigateToDetail que enviará para a página 'Detail'. Portanto, tenho que usar o useRoute para pegar os detalhes do caso aberto pelo usuário
 	const route = useRoute();
 	const incident = route.params.incident; //crio a const indident e busco os dados do incident aberto/clicado/selecionado pelo usuário na página de casos. esse valor criado agora tem o nome da ong, titulo do caso, descrição, valor... vou usalos p exibir em tela
 	const message = `Olá ${incident.name}, estou entrando em contato pois gostaria de ajudar no caso ${incident.title} com ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(incident.value)}`; //msg padrao p mail e zap
@@ -44,7 +43,9 @@ export default function Detail() {
 				<Text style={styles.incidentValue}>{incident.name} de {incident.city}/{incident.uf}</Text>					
 				<Text style={styles.incidentProperty}>CASO:</Text>
 				<Text style={styles.incidentValue}>{incident.title}</Text>
-				<Text style={styles.incidentProperty}>Valor:</Text>
+				<Text style={styles.incidentProperty}>DESCRIÇÃO:</Text>
+				<Text style={styles.incidentValue}>{incident.description}</Text>
+				<Text style={styles.incidentProperty}>VALOR:</Text>
 				<Text style={styles.incidentValue}>{
 					Intl.NumberFormat('pt-BR', { 
 						style: 'currency', 

@@ -14,11 +14,11 @@ export default function Incidents() {
 
 	const navigation = useNavigation(); //chamando a função navigation	
 	function navigateToDetail(incident) {
-		navigation.navigate('Detail', { incident }); // ta falando pra navegar pra página 'Detail' e mostrar o caso 'detail' que foi o parametro recebido ao clicar no botao
+		navigation.navigate('Detail', { incident }); // ta falando pra navegar pra página 'Detail' e mostrar o caso 'incident' que foi o parametro recebido ao clicar no botao
 	}
 
 	async function loadIncidents() {
-		if (loading) { //se ja tiver carregando (laoding==true) eu vou parar por aqui, pq nao vou carregar a 3a pag por ex, se a 2a ainda n foi carregada
+		if (loading) { //se ja tiver carregando (loading==true) eu vou parar por aqui, pq nao vou carregar a 3a pag por ex, se a 2a ainda n foi carregada
 			return;
 		}
 
@@ -53,10 +53,10 @@ export default function Incidents() {
 			<FlatList
 				data={incidents} //o flatlist executa a função renderItem X vezes sendo X a qnt de itens da array data
 				style={styles.incidentList}
-				keyExtractor={incident => String(incident.id)} //linha necessári como se fosse o 'key' depois de um .map no reactjs. mas no ReactNative é um função que retorna uma variável única
+				keyExtractor={incident => String(incident.id)} //linha necessário como se fosse o 'key' depois de um .map no reactjs. mas no ReactNative é um função que retorna uma variável única
 				showsVerticalScrollIndicator={false} //faço isso p ter a função do scroll mas não a parte visual
-				onEndReached={loadIncidents} //n tendi pq ele fez isso, mas se chegou no final, ele vai parar no if da função loadIncidents de qq jeito
-				onEndReachedThreshold={0.2} //qnts por cento do final da lista tem q ta pra atualizar a próxima (0 a 1. sendo 0.2 20%)
+				onEndReached={loadIncidents} //quando chegar no final do que ta aparecendo vai carregar mais
+				onEndReachedThreshold={0.2} //qnd tiver faltando 20% pra acabar a pag vai carregar mais
 				renderItem={({ item: incident }) => ( //essa função recebe um parametro de nome 'item', faço item: incident pra ela ter o nome de 'incident' e nao bugar a mente
 					<View style={styles.incident}>
 						<Text style={styles.incidentProperty}>ONG:</Text>
