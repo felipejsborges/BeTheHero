@@ -5,40 +5,104 @@ export default StyleSheet.create({
 	container: {
 		flex: 1,
 		paddingHorizontal: 24,
-		paddingTop: Constants.statusBarHeight + 20,
+		paddingTop: Constants.statusBarHeight + 15,
 	},
 
 	header: {
-		flexDirection: 'row',
-		justifyContent: "space-between",
+		width: '100%',
+		flexDirection: 'row',	
+		justifyContent: 'space-between',
 		alignItems: 'center'
 	},
 
-	headerText: {
-		fontSize: 15,
-		color: '#737380',
+	logoImg: {
+		width: '30%'
 	},
 
-	headerTextBold: {
-		fontWeight: 'bold'
+	title: {
+		width: '70%',
+		fontSize: 30,
+		color: '#13131a',		
+		fontWeight: 'bold',
+		marginLeft: 30,
 	},
 	
-	title: {
-		fontSize: 30,
-		marginBottom: 16,
-		marginTop: 48,
-		color: '#13131a',
-		fontWeight: 'bold'
+	filterContainer: {
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderRadius: 8,
+		backgroundColor: '#FFF',
+		marginTop: 10,
+		marginBottom: 20,
+		padding: 10
 	},
 
-	description: {
-		fontSize: 16,
-		lineHeight: 24,
-		color: '#737380'
+	filterTitle: {
+		justifyContent: 'center',
+		fontSize: 20,
+		fontWeight: 'bold',
+		color: '#13131a',
 	},
+
+	filterAction: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+	},
+
+	selectsContainer: {
+		flexDirection: 'column',
+		marginRight: 10,
+	},
+
+	selectUfCity: {
+		backgroundColor: '#F0F0F0',
+		justifyContent: 'center',
+		alignContent: 'center',		
+		width: 230,
+		margin: 5,
+		borderRadius: 8
+	},
+
+	filterButtons: {
+		flexDirection: 'column',
+		marginLeft: 10,
+	},
+
+	applyClearFilter: {
+		alignItems: 'center',
+		padding: 10,
+	},
+
+	applyClearFilterText: {
+		alignItems: 'center',
+		color: '#e02041',
+		fontSize: 20,
+		fontWeight: 'bold'	
+	},
+
+	incidentsCountContent: {
+		width: '100%',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		marginHorizontal: 20,		
+		marginTop: 5
+	},
+
+	incidentsCountContentText: {
+		fontSize: 14
+	},
+
+	listTitle: {
+		alignSelf: 'center',
+		fontSize: 20,
+		fontWeight: 'bold',
+		color: '#13131a',
+	},	
 
 	incidentList: {
-		marginTop: 32,
+		marginTop: 10,
 	},
 
 	incident: {

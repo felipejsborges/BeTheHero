@@ -6,7 +6,7 @@ exports.up = function(knex) { //o método 'up' é o responsável por criar essa 
     table.string('email').notNullable();
     table.string('whatsapp').notNullable();
     table.string('city').notNullable();
-    table.string('uf', 2).notNullable(); // o , 2 é pra especificar que esse dado tem q ter 2 caracteres
+    table.string('uf').notNullable();
   })
 };
 

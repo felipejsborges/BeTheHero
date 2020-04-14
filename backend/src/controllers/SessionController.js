@@ -6,7 +6,7 @@ module.exports = {
     const { id } = request.body; //o corpo contém apenas o ID inserido no input da pag de login. to chamando ele de 'id'
     const ong = await connection('ongs') //conectando com todas as ongs cadastradas
       .where('id', id) //onde tiver uma com o id igual ao do request.body
-      .select('name') //selecionaremos seu nome
+      .select('*') //selecionaremos seu nome
       .first() //apenas o primeiro (?)
 
     if (!ong) { //se n encontrar ong com o id inserido é pq n existe

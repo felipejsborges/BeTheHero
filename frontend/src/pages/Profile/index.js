@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'; //o useEffect é usado para disparar uma função em um determinado momento, sem depender de um clique, por exemplo
 import { Link, useHistory } from 'react-router-dom'; //necessário para que, ao abrir uma nova página, ele n precise recarregar td a página inteira novamente, apenas abre a página desejada
-import { FiPower, FiTrash2 } from 'react-icons/fi' //o /fi é pq quero o feather icons e o FiLogIn é o ícone específico que eu quero
+import { FiPower, FiTrash2, FiEdit } from 'react-icons/fi' //o /fi é pq quero o feather icons e o FiLogIn é o ícone específico que eu quero
 import './styles.css';
 import logoImg from '../../assets/logo.svg'
 import api from '../../services/api';
@@ -10,6 +10,7 @@ export default function Profile() {
   const history = useHistory();
   const ongId = localStorage.getItem('ongId');
   const ongName = localStorage.getItem('ongName');
+  
     //o useEffect é uma função q recebe dois parâmetros. o primeiro é a função q será executada. e o segundo é o elemento q quando alterado irá disparar a função.
   useEffect(() => {
     //a função q será executada é pegar, através da rota /profile
@@ -33,6 +34,12 @@ export default function Profile() {
     } catch (err) {
       alert('Erro ao deletar caso, tente novamente.')
     }
+  }  
+  function handleEdit(incident) {
+    localStorage.setItem('incidentTitle', incident.title);
+    localStorage.setItem('incidentDescription', incident.description);
+    localStorage.setItem('incidentValue', incident.value);
+    localStorage.setItem('incidentId', incident.id)	    
   }
   function handleLogout() {
     localStorage.clear(); //apagando o que foi salvo ao realizar login
@@ -43,24 +50,32 @@ export default function Profile() {
       <header>
         <img src={logoImg} alt="Be The Hero"/>
         <span>Bem vinda, {ongName}</span>
-        <Link className="button" to="/incidents/new">Cadastrar novo caso</Link>
-        <button onClick={handleLogout} type="button">
+        <div className="editNew">
+          <Link className="edit-link" to={`/ongs/${ongId}`}>Editar dados da sua ONG</Link>
+          <Link className="button" to="/incidents/new">Cadastrar novo caso</Link>
+          <button onClick={handleLogout} type="button">
           <FiPower size={18} color="#e02041" />
         </button>
+        </div>
+        
       </header>
-      <h1>Casos cadastrados</h1>
+        <h1>Casos cadastrados{` (${incidents.length})`}</h1>
       <ul>
         {incidents.map(incident => ( //fazendo o map no incident e pra cada iteração vou criar a estrutura abaixo. preciso por o key (com um valor único para cada incident) no primeri li quando for fazer o map. a formatação para dinheiro está explicada na linha de 'VALOR'
           <li key={incident.id}>
-          <strong>CASO:</strong>
+          <strong>CASO</strong>
           <p>{incident.title}</p>
 
           <strong>DESCRIÇÃO</strong>
           <p>{incident.description}</p>
 
-          <strong>VALOR:</strong>
+          <strong>VALOR</strong>
           <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL'}).format(incident.value)}</p>
-
+           
+          <Link onClick={() => handleEdit(incident)} className="go-link" to={`/incidents/${incident.id}`}>
+            <FiEdit size={20} color="#a8a8b3" />        
+          </Link>
+          
           <button onClick={() => handleDeleteIncident(incident.id)} type="button">
             <FiTrash2 size={20} color="#a8a8b3" />
           </button>

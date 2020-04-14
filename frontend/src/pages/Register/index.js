@@ -4,15 +4,18 @@ import { FiArrowLeft } from 'react-icons/fi'
 import './styles.css';
 import logoImg from '../../assets/logo.svg'
 import api from '../../services/api'
+import showCities, { estados } from '../utils/stateandcity.js'
 
 export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
   const [city, setCity] = useState('');
-  const [uf, setUf] = useState('');
+  const [uf, setUf] = useState('Selecione um Estado');
 
   const history = useHistory(); //criando a const history pra ser usada dentro da função
+
+  const cidades = showCities(uf);  
 
   async function handleRegister(e) { //função que será chamada ao "submitar" o formulário de registro da ong. o 'e' é o evento q recebemos ao executar a função
     e.preventDefault(); //isso previne o comportamento padrão da página. um ex: se n fizer isso ela recarrega inteira quando chamar a ação
@@ -25,8 +28,13 @@ export default function Register() {
     };
     try { //vou tentar realizar a req e response e, se der certo:
       const response = await api.post('ongs', data); //to enviando para a rota '/ongs' a array 'data'
-      alert(`Seu ID de acesso: ${response.data.id}`); //to retornando um alerta de sucesso. response é um json contendo os dados da resposta do sistema, data um objeto desse json e id, que fica dentro do data, é o ID criado para a ong que acabou de se cadastrar
-      history.push('/'); //enviando o usuário de volta pra pagina inicial após realizar o cadastro
+      
+      if (!response.data.resp) {
+        alert(`Seu ID de acesso: ${response.data.id}`); //to retornando um alerta de sucesso. response é um json contendo os dados da resposta do sistema, data um objeto desse json e id, que fica dentro do data, é o ID criado para a ong que acabou de se cadastrar
+        history.push('/');
+      } else {
+        alert(response.data.resp);
+      } //enviando o usuário de volta pra pagina inicial após realizar o cadastro
     } catch (err) { //se der errado
       alert('Erro no cadastro, tente novamente.');
     }
@@ -60,19 +68,33 @@ export default function Register() {
             value={whatsapp}
             onChange={e => setWhatsapp(e.target.value)}
           />
-          <div className="input-group">
-            <input 
-              placeholder="Cidade"
-              value={city}
-              onChange={e => setCity(e.target.value)}            
-            />
-            <input 
-              placeholder="UF" 
-              style={{ width: 80 }}
-              value={uf}
-              onChange={e => setUf(e.target.value)}
-            />            
-          </div>
+          
+            
+          <select 
+            onChange={e => setUf(e.target.value)}              
+            
+            value={uf} 
+          >
+            {estados.map( item => (
+              <option key={item}>
+                {item}
+              </option>
+            ))}              
+          </select>
+
+          <select               
+            onChange={e => setCity(e.target.value)}
+                                        
+            value={city}
+          >             
+              {cidades.map( item => (
+                <option key={item}>
+                {item}
+              </option>
+              ))}              
+          </select>
+                
+          
           <button className="button" type="submit">Cadastrar</button>
         </form>
       </div>        

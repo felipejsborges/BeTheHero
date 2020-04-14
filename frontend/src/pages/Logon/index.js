@@ -16,6 +16,10 @@ export default function Logon() {
       const response = await api.post('sessions', {id}); //enviado o id para a rota /sessions
       localStorage.setItem('ongId', id);
       localStorage.setItem('ongName', response.data.name);
+      localStorage.setItem('ongEmail', response.data.email);
+      localStorage.setItem('ongWhatsapp', response.data.whatsapp);
+      localStorage.setItem('ongCity', response.data.city);
+      localStorage.setItem('ongUf', response.data.uf);
       history.push('/profile'); //direcionando para o perfil da ong
     } catch (err) {
       alert('Falha no login, tente novamente');

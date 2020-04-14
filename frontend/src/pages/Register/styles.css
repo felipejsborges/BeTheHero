@@ -44,10 +44,13 @@
     margin-top: 8px;
 }
 
-.register-container .content form .input-group {
-    display: flex;
-}
-
-.register-container .content form .input-group input + input {  /* to falando q todo input q tiver um input antes terá a seguinte estilização*/
-    margin-left: 8px;
+.register-container .content form select {
+    width: 100%;
+    height: 60px;
+    color: #737380;
+    border: 1px solid #dcdce6;
+    width: 450px;
+    border-radius: 8px;
+    padding: 0 24px;
+    margin-top: 8px;
 }

@@ -23,16 +23,15 @@ export default StyleSheet.create({
 	},
 
 	incidetProperty: {
-		fontSize: 14,
+		fontSize: 16,
 		color: '#41414d',
 		fontWeight: 'bold',
-		marginTop: 24
 	},
 
-	incidentValue: {
-		marginTop: 8,
-		fontSize: 15,
-				color: '#737380'
+	incidentValue: {		
+		fontSize: 14,
+		color: '#737380',
+		marginBottom: 20,
 	},
 
 	contactBox: {

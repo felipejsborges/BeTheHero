@@ -1,69 +1,144 @@
 import React, { useState, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons'; //icone nativo do expo. pra usar, tem q pegar o nome do site de quem fez os ícones
 import { useNavigation } from '@react-navigation/native'; //função pra ele navegar entre as paginas.
-import { View, FlatList, Image, Text, TouchableOpacity } from 'react-native'; //flatlist é pra colocar barra de rolagem na listagem
+import { View, FlatList, Image, Text, TouchableOpacity, Picker, Alert } from 'react-native'; //flatlist é pra colocar barra de rolagem na listagem
 import api from '../../services/api';
 import logoImg from '../../assets/logo.png'; //n precisa colocar 1x, 2x ou 3x pq ele ja pega automaticamente a melhor opção
 import styles from './styles';
+import showCities, { estados } from './Utils/stateandcity';
 
 export default function Incidents() {
 	const [incidents, setIncidents] = useState([]);
 	const [total, setTotal] = useState(0); //contagem da quantidade total de casos
-	const [page, setPage] = useState(1); //inicia na pagina 1
-	const [loading, setLoading] = useState(false); //por padrao, nao vai ta carregando
+	const [totalCity, setTotalCity] = useState(0); //contagem da quantidade total de casos
+	//const [page, setPage] = useState(1); //inicia na pagina 1
+	//const [loading, setLoading] = useState(false); //por padrao, nao vai ta carregando
+	const [uf, setUf] = useState('Selecione um Estado');
+	const [city, setCity] = useState('Selecione uma Cidade');
+	
+	const cidades = showCities(uf);	
+
+	useEffect(() => {
+		loadIncidents();
+	}, []);
+
+	async function loadIncidents() {
+		console.log(`no loading ta chegando ${city}`);		
+		setIncidents([]);
+		const response = await api.get('incidents', { //pegando os casos que ficam na rota /incidents
+			params: { city } //apenas da pagina em que estivermos
+		});
+		setTotal(response.headers['x-total-count']); //esse x-total.. que ta na headers do response é o valor criado no backend q fazia a soma da qtd de casos. aí to atualizando o valor do state total com ele
+		
+		if(!response.data.erro) {
+			setIncidents([...response.data]); // pegando o que ja tem em incidents e adicionando o q veio da requisição api e atualizando o state incidents
+			setTotalCity(response.headers['x-total-countcity']);
+		} else {
+			return Alert.alert(response.data.erro);
+		}	
+	}
 
 	const navigation = useNavigation(); //chamando a função navigation	
 	function navigateToDetail(incident) {
 		navigation.navigate('Detail', { incident }); // ta falando pra navegar pra página 'Detail' e mostrar o caso 'incident' que foi o parametro recebido ao clicar no botao
 	}
 
-	async function loadIncidents() {
-		if (loading) { //se ja tiver carregando (loading==true) eu vou parar por aqui, pq nao vou carregar a 3a pag por ex, se a 2a ainda n foi carregada
-			return;
-		}
-
-		if (total > 0 && incidents.length === total) { //se ele ja tiver carregado pelo menos 1 caso e ja tiver carregado tudo, nao precisarei carregar mais nada
-			return;
-		}
-
-		setLoading(true); // se passar pelos if, vai atualizar o loading para true, ou seja, começará a carregar e chamará a api abaixo
+	async function clearFilter () {	
+		setIncidents([]);
 		const response = await api.get('incidents', { //pegando os casos que ficam na rota /incidents
-			params: { page } //apenas da pagina em que estivermos
-		}); 
-		setIncidents([...incidents, ...response.data]); // pegando o que ja tem em incidents e adicionando o q veio da requisição api e atualizando o state incidents
+			params: { city: 'Selecione uma Cidade' } //apenas da pagina em que estivermos
+		});
 		setTotal(response.headers['x-total-count']); //esse x-total.. que ta na headers do response é o valor criado no backend q fazia a soma da qtd de casos. aí to atualizando o valor do state total com ele
-		setPage(page + 1); //atualizando o número da pag
-		setLoading(false); //se chegar aqui é pq carregou td, entao n tem pq carregar mais
+		setIncidents([...response.data]); // pegando o que ja tem em incidents e adicionando o q veio da requisição api e atualizando o state incidents
+		setTotalCity(response.headers['x-total-countcity']);
+		setUf('Selecione um Estado');
+		setCity('Selecione uma Cidade');
 	}
-	useEffect(() => {
-		loadIncidents();
-	}, []);
 
 	return (
 		<View style={styles.container}>
 			<View style={styles.header}>
-				<Image source={logoImg} />
-				<Text style={styles.headerText}>
-					Total de <Text style={styles.headerTextBold}>{total} casos</Text>.
-				</Text>
+				<Image style={styles.logoImg} source={logoImg} />
+				<Text style={styles.title}>Bem-vindo!</Text>		
 			</View>
-			<Text style={styles.title}>Bem-vindo!</Text>
-			<Text style={styles.description}>Escolha um dos casos abaixo e salve o dia.</Text>
 
+			<View style={styles.filterContainer}>
+				<Text style={styles.filterTitle}>Filtros</Text>
+				<View style={styles.filterAction}>
+					<View style={styles.selectsContainer}>
+						<Picker
+							style={styles.selectUfCity}
+							onValueChange={e => {
+								const u = e;					
+								setUf(u);
+							}}
+							selectedValue={uf}
+						>
+							{estados.map( item => (
+								<Picker.Item									
+									key={item}
+									label={item}
+									value={item}
+								/>
+							))}
+						</Picker>
+						<Picker
+							style={styles.selectUfCity}
+							onValueChange={e => {
+								const c = e;					
+								setCity(c);
+							}}
+							selectedValue={city}
+      			>
+							{cidades.map( item => (
+								<Picker.Item
+									key={item}
+									label={item}
+									value={item}
+								/>
+							))}
+      			</Picker>
+					</View>
+
+					<View style={styles.filterButtons}>
+						<TouchableOpacity
+							style={styles.applyClearFilter}
+							onPress={() =>loadIncidents()}>
+							<Text style={styles.applyClearFilterText}>Aplicar</Text>
+						</TouchableOpacity>
+
+						<TouchableOpacity 
+							style={styles.applyClearFilter} 
+							onPress={() => 
+							clearFilter()
+						}>
+							<Text style={styles.applyClearFilterText}>Limpar</Text>
+						</TouchableOpacity>
+					</View>
+				</View>
+
+				<View style={styles.incidentsCountContent}>
+					<Text style={styles.incidentsCountContentText}>Casos no país: {total} </Text>
+					<Text style={styles.incidentsCountContentText}>Casos na cidade: {totalCity} </Text>
+				</View>
+			</View>
+			
+			<Text style={styles.listTitle}>Ajude em algum caso abaixo</Text>
+			
 			<FlatList
 				data={incidents} //o flatlist executa a função renderItem X vezes sendo X a qnt de itens da array data
 				style={styles.incidentList}
 				keyExtractor={incident => String(incident.id)} //linha necessário como se fosse o 'key' depois de um .map no reactjs. mas no ReactNative é um função que retorna uma variável única
 				showsVerticalScrollIndicator={false} //faço isso p ter a função do scroll mas não a parte visual
-				onEndReached={loadIncidents} //quando chegar no final do que ta aparecendo vai carregar mais
-				onEndReachedThreshold={0.2} //qnd tiver faltando 20% pra acabar a pag vai carregar mais
+				//onEndReached={loadIncidents} //quando chegar no final do que ta aparecendo vai carregar mais
+				//onEndReachedThreshold={0.2} //qnd tiver faltando 20% pra acabar a pag vai carregar mais
 				renderItem={({ item: incident }) => ( //essa função recebe um parametro de nome 'item', faço item: incident pra ela ter o nome de 'incident' e nao bugar a mente
 					<View style={styles.incident}>
-						<Text style={styles.incidentProperty}>ONG:</Text>
-						<Text style={styles.incidentValue}>{incident.name}</Text>					
-						<Text style={styles.incidentProperty}>CASO:</Text>
+						<Text style={styles.incidentProperty}>CASO</Text>
 						<Text style={styles.incidentValue}>{incident.title}</Text>
-						<Text style={styles.incidentProperty}>Valor:</Text>
+						<Text style={styles.incidentProperty}>ONG</Text>
+						<Text style={styles.incidentValue}>{incident.name}</Text>					
+						<Text style={styles.incidentProperty}>Valor</Text>
 						<Text style={styles.incidentValue}>{
 							Intl.NumberFormat('pt-BR', { 
 								style: 'currency', 
