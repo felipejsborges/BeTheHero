@@ -36,7 +36,7 @@ Omnistack week is an event to discover **new technologies and tools, learn new c
 - React.js for front-end;
 - React Native for mobile.	
 
-We developed a **website** called **BeTheHero** where an **organization could add incidents** that need financial assistance from society and a **mobile app** where people could access and see a list with the created incidents, select one and **contact the organization**. The default features were made with the Rocketseat instructor. So I decided to put to test the knowledge acquired and create new features. Let's see the entire website and mobile app features.
+We developed a **website** called **BeTheHero** where an **organization could add incidents** that need financial assistance from society and a **mobile app** where people could access and see a list of the created incidents, select one and **contact the organization**. The default features were made with the Rocketseat instructor. So I decided to put to test the knowledge acquired and create new features. Let's see the entire website and mobile app features.
 
 ## Website features
 ### Registration and Login
@@ -67,7 +67,7 @@ On the profile page it's possible to manage the incidents. By default, the organ
 ### Edit Organization Information
 [Back to sumary](#sumary)
 
-One more feature that I created: a new page where the organization can update its information. Like at register page, it has a list with states and cities of Brazil and it's not possible to set a name, email or whatsapp of another registered organization.
+One more feature that I created: a new page where the organization can update its information. Like at register page, it has a list of the states and cities of Brazil and it's not possible to set a name, email or whatsapp of another registered organization.
 
 ![Updating Organization](/.github/updating-organization.gif)
 
