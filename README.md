@@ -9,7 +9,7 @@
 
 > Project developed during the **11th OmniStack Week** by 🚀[Rocketseat](rocketseat.com.br)
 
-## Sumary :bookmark_tabs:
+:bookmark_tabs: ## Sumary
 [Intro](#intro) :door:
 
 [Website features](#website-features) :computer:
