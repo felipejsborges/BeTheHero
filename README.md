@@ -1,7 +1,7 @@
 # Be The Hero
 <center>Centered text</center>
 
-![Logo](logo.jpeg)
+![Logo](../.github/logo.jpeg)
 
 > Project developed during the **11th OmniStack Week** by 🚀[Rocketseat](rocketseat.com.br)
 
