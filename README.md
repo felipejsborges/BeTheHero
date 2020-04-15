@@ -68,4 +68,4 @@ On the main page of the mobile app, it's possible to check all created incidents
 
 So I created a new tool: a city filter system. Just need to select the state and the city and it shows all incidents created by a organization registered in this city. If I set a city where has no organization registered, the app returns a message informing that. It's possible to clean the filter.
 
-![Mobile app new features](https://media.giphy.com/media/Y4VXqnw7W83KQRMQSc/200w_d.gif)
+![Mobile app new features](https://media.giphy.com/media/ii7K2ERffmQcIGukUC/source.gif)
