@@ -46,11 +46,11 @@ On the register page, an organization enters its information and the website ret
 
 - Registering a new ONG
 
-![Registration and Login](https://media.giphy.com/media/f4JibkmrNnwTXL1wSx/source.gif)
+![Registration and Login](/.github/registration-and-login.gif)
 
 - Trying to create with registered information
 
-![Trying to Create Again](https://media.giphy.com/media/Wt1YwEZwISSixnJcla/source.gif)
+![Trying to Create Again](/.github/try-create-gain.gif)
 
 ### Manage Incidents and Logout
 [Back to sumary](#sumary)
@@ -58,18 +58,18 @@ On the register page, an organization enters its information and the website ret
 On the profile page it's possible to manage the incidents. By default, the organization can create and delete incidents and checks the ones that are already created. And it's possible to logout. So I created a new page where it's possible to edit an incident
  - Creating and deleting
  
- ![Create and Delete Incident](https://media.giphy.com/media/dUMpJVxWN4MR49txcL/source.gif)
+ ![Create and Delete Incident](/.github/create-delete-incident.gif)
  
  - Editing incident
  
- ![Editing Incident](https://media.giphy.com/media/QX1jtYDWJlahSakJng/source.gif)
+ ![Editing Incident](/.github/updating-incident.gif)
   
 ### Edit Organization Information
 [Back to sumary](#sumary)
 
 One more feature that I created: a new page where the organization can update its information. Like at register page, it has a list with states and cities of Brazil and it's not possible to set a name, email or whatsapp of another registered organization.
 
-![Updating Organization](https://media.giphy.com/media/THmnMqOWsPXtdVJfmZ/source.gif)
+![Updating Organization](/.github/updating-organization.gif)
 
 ## Mobile app features
 ### Main functionalities
@@ -77,12 +77,12 @@ One more feature that I created: a new page where the organization can update it
 
 On the main page of the mobile app, it's possible to check all created incidents, get details about each one (it opens in a new page) and contact the organization via e-mail or whatsapp. All these features were created with Rocketseat instructor
 
-![Default features mobile app](https://media.giphy.com/media/U1yOMk2cOQE5h6106r/source.gif)
+![Default features mobile app](/.github/default-features-app.gif)
 ### City filter system 
 [Back to sumary](#sumary)
 
 So I created a new tool: a city filter system. Just need to select the state and the city and it shows all incidents created by an organization registered in this city. If I set a city where has no organization registered, the app returns a message informing that. It's possible to clean the filter.
 
-![Mobile app new features](https://media.giphy.com/media/ii7K2ERffmQcIGukUC/source.gif)
+![Mobile app new features](/.github/app-new-features.gif)
 
 by [Felipe Borges](https://www.linkedin.com/in/felipejsborges)
