@@ -2,23 +2,24 @@
 	<img src="/.github/logo.png" alt="Logo" width="200px" style="max-width:100%"/>
 </div>
 
+
 <div align="center">
-	> Project developed during the **11th OmniStack Week** by 🚀[Rocketseat](rocketseat.com.br)
+	<img src="/.github/app-website.png" alt="App-Website" width="200px" style="max-width:100%"/>
 </div>
 
 > Project developed during the **11th OmniStack Week** by 🚀[Rocketseat](rocketseat.com.br)
 
 ## Sumary :bookmark_tabs:
-[Intro](#intro)
+[Intro](#intro) :door:
 
-[Website features](#website-features)
-- [Registration and Login](#registration-and-login)
-- [Manage Incidents and Logout](#manage-incidents-and-logout)
-- [Edit Organization Information](#edit-organization-information)
+[Website features](#website-features) :computer:
+- [Registration and Login](#registration-and-login) :registered:
+- [Manage Incidents and Logout](#manage-incidents-and-logout) :open_book:
+- [Edit Organization Information](#edit-organization-information) :pencil2:
 
-[Mobile app features](#mobile-app-features)
-- [Main functionalities](#main-functionalities)
-- [City filter system](#city-filter-system)
+[Mobile app features](#mobile-app-features) :iphone:
+- [Main functionalities](#main-functionalities) :hammer_and_wrench:
+- [City filter system](#city-filter-system) :cityscape:
 
 ## Intro :door:
 [Back to sumary](#sumary)
@@ -30,8 +31,8 @@ Omnistack week is an event to discover **new technologies and tools, learn new c
 
 We developed a **website** called **BeTheHero** where an **organization could add incidents** that need financial assistance from society and a **mobile app** where people could access and see a list with the created incidents, select one and **contact the organization**. The default features were made with the Rocketseat instructor. So I decided to practice the learned knowledge by myself and I create new features. Let's see the entire website and mobile app features.
 
-## Website features
-### Registration and Login
+## Website features :computer:
+### Registration and Login :registered:
 [Back to sumary](#sumary)
 
 On the register page, an organization enters its information and the website returns a unique login ID. By default, the organization had to write the state and the city. And it was possible to register a new organization with the same name, e-mail or whatsapp. So I created a tool to select the state and city of a list. And now it's not possible to create a new login with information that's already registered.
@@ -44,7 +45,7 @@ On the register page, an organization enters its information and the website ret
 
 ![Trying to Create Again](https://media.giphy.com/media/Wt1YwEZwISSixnJcla/source.gif)
 
-### Manage Incidents and Logout
+### Manage Incidents and Logout :open_book:
 [Back to sumary](#sumary)
 
 On the profile page it's possible to manage the incidents. By default, the organization can create and delete incidents and checks the ones that are already created. And it's possible to logout. So I created a new page where it's possible to edit an incident
@@ -56,23 +57,25 @@ On the profile page it's possible to manage the incidents. By default, the organ
  
  ![Editing Incident](https://media.giphy.com/media/QX1jtYDWJlahSakJng/source.gif)
   
-### Edit Organization Information
+### Edit Organization Information :pencil2:
 [Back to sumary](#sumary)
 
 One more feature that I created: a new page where the organization can update its information. Like at register page, it has a list with states and cities of Brazil and it's not possible to set a name, email or whatsapp of another registered organization.
 
 ![Updating Organization](https://media.giphy.com/media/THmnMqOWsPXtdVJfmZ/source.gif)
 
-## Mobile app features 
-### Main functionalities
+## Mobile app features :iphone:
+### Main functionalities :hammer_and_wrench:
 [Back to sumary](#sumary)
 
 On the main page of the mobile app, it's possible to check all created incidents, get details about each one (it opens in a new page) and contact the organization via e-mail or whatsapp. All these features were created with Rocketseat instructor
 
 ![Default features mobile app](https://media.giphy.com/media/U1yOMk2cOQE5h6106r/source.gif)
-### City filter system
+### City filter system :cityscape:
 [Back to sumary](#sumary)
 
 So I created a new tool: a city filter system. Just need to select the state and the city and it shows all incidents created by an organization registered in this city. If I set a city where has no organization registered, the app returns a message informing that. It's possible to clean the filter.
 
 ![Mobile app new features](https://media.giphy.com/media/ii7K2ERffmQcIGukUC/source.gif)
+
+License :memo:
