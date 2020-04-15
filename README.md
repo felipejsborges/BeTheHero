@@ -1,6 +1,8 @@
 # Be The Hero
 <center>Centered text</center>
-![Logo](./.github/logo.jpeg)
+
+![Logo](./logo.jpeg)
+
 > Project developed during the **11th OmniStack Week** by [Rocketseat](rocketseat.com.br)
 
 ## Sumary
