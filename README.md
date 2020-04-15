@@ -1,5 +1,5 @@
 # Be The Hero
-div align="center">
+<div align="center">
 ![Logo](/.github/logo.png)
 </div>
 
