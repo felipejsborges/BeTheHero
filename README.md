@@ -36,7 +36,7 @@ Omnistack week is an event to discover **new technologies and tools, learn new c
 - React.js for front-end;
 - React Native for mobile.	
 
-We developed a **website** called **BeTheHero** where an **organization could add incidents** that need financial assistance from society and a **mobile app** where people could access and see a list with the created incidents, select one and **contact the organization**. The default features were made with the Rocketseat instructor. So I decided to practice the learned knowledge by myself and I create new features. Let's see the entire website and mobile app features.
+We developed a **website** called **BeTheHero** where an **organization could add incidents** that need financial assistance from society and a **mobile app** where people could access and see a list with the created incidents, select one and **contact the organization**. The default features were made with the Rocketseat instructor. So I decided to put to test the knowledge acquired and create new features. Let's see the entire website and mobile app features.
 
 ## Website features
 ### Registration and Login
