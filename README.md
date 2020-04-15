@@ -1,7 +1,9 @@
 # Be The Hero
 
-<img src="/.github/logo.png" alt="Logo" align="center"
-	width="300" height="180" />
+<div align="center">
+	<img src="/.github/logo.png" alt="Logo" width="200px" style="max-width:100%"/>
+</div>
+
 
 
 > Project developed during the **11th OmniStack Week** by 🚀[Rocketseat](rocketseat.com.br)
