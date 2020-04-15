@@ -4,7 +4,7 @@
 
 
 <div align="center">
-	<img src="/.github/app-website.png" alt="App-Website" width="200px" style="max-width:100%"/>
+	<img src="/.github/app-website.png" alt="App-Website" style="max-width:100%"/>
 </div>
 
 > Project developed during the **11th OmniStack Week** by 🚀[Rocketseat](rocketseat.com.br)
