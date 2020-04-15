@@ -2,11 +2,23 @@
 	<img src="/.github/logo.png" alt="Logo" width="200px" style="max-width:100%"/>
 </div>
 
+<br>
+
+<div align="right">
+	Project developed during the <strong>11th OmniStack Week</strong> by <g-emoji class="g-emoji" alias="rocket" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f680.png">🚀</g-emoji><a href="rocketseat.com.br">Rocketseat</a>	
+</div>
+
+<br>
+
 > Project developed during the **11th OmniStack Week** by 🚀[Rocketseat](rocketseat.com.br)
+
+<br>
 
 <div align="center">
 	<img src="/.github/app-website.png" alt="App-Website" style="max-width:100%"/>
 </div>
+
+<br>
 
 ## Sumary
 [Intro](#intro) :door:
