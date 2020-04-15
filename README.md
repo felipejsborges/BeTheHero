@@ -1,11 +1,11 @@
 # Be The Hero
 <center>Centered text</center>
 
-![Logo](/logo.jpeg)
+![Logo](logo.jpeg)
 
-> Project developed during the **11th OmniStack Week** by [Rocketseat](rocketseat.com.br)
+> Project developed during the **11th OmniStack Week** by 🚀[Rocketseat](rocketseat.com.br)
 
-## Sumary
+## Sumary :bookmark_tabs:
 [Intro](#intro)
 
 [Website features](#website-features)
@@ -17,7 +17,7 @@
 - [Main functionalities](#main-functionalities)
 - [City filter system](#city-filter-system)
 
-## Intro
+## Intro :door:
 [Back to sumary](#sumary)
 
 Omnistack week is an event to discover **new technologies and tools, learn new concepts and get new skills**. During this intense week, we get access to content **focused on the practice** of technologies that are used by big companies like Facebook, Netflix, Airbnb and many others. Besides having access to an **exclusive community** with Rocketseat instructors and thousands of other developers. The main technologies used in this event:
