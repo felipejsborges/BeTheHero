@@ -85,4 +85,5 @@ So I created a new tool: a city filter system. Just need to select the state and
 
 ![Mobile app new features](/.github/app-new-features.gif)
 
-by [Felipe Borges](https://www.linkedin.com/in/felipejsborges)
+by Felipe Borges<br>
+[Linkedin](https://www.linkedin.com/in/felipejsborges) | [GitHub](https://github.com/felipejsborges)
